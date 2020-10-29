@@ -3,8 +3,10 @@ Priority: extra
 Maintainer: Carlos Rafael Giani <crg7475@mailbox.org>
 Build-Depends:
  debhelper (>= 8.0.0),
- python,
- libvpu-imx6-dev,
+ imx-vpu-hantro-dev,
+ libimxdmabuffer-dev,
+ pkg-config,
+ python3,
 Standards-Version: 3.9.3
 Section: libs
 Homepage: https://github.com/Freescale/libimxvpuapi

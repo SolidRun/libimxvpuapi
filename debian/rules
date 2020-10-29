@@ -9,6 +9,8 @@
 # Uncomment this to turn on verbose mode.
 #export DH_VERBOSE=1
 
+IMX_KERNEL_HEADERS = $(shell find /usr/include -maxdepth 1 -iname "kernel-*imx*" -type d | sort | tail -1)
+
 # install all files into temporary destdir
 DESTDIR=$(CURDIR)/debian/tmp
 
@@ -23,7 +25,10 @@ override_dh_auto_clean:
 override_dh_auto_configure:
 	./waf configure \
 		--prefix=/usr \
-		--libdir=/usr/lib/$(DEB_BUILD_MULTIARCH)
+		--libdir=/usr/lib/$(DEB_BUILD_MULTIARCH) \
+		--sysroot-path=/ \
+		--imx-headers=$(IMX_KERNEL_HEADERS) \
+		--imx-platform=imx8mm
 
 override_dh_auto_install:
 	./waf install \
